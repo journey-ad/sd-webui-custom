@@ -1,0 +1,23 @@
+/* custom css */
+#quicksettings{
+  opacity: 0.3;
+}
+#quicksettings > div > div{
+  cursor: not-allowed;
+}
+#quicksettings > div > div > *{
+  pointer-events: none;
+}
+.gradio-container .tabs > div:first-child button:nth-child(n+5) {
+  display: none;
+  opacity: 0.3;
+  pointer-events: none;
+}
+.performance {
+  white-space: unset;
+}
+.output-html p br {
+  content: "";
+  display: block;
+  margin-bottom: 0.5em;
+}

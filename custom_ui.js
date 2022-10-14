@@ -76,6 +76,12 @@ const presetList = [
     scale: 15
   },
   {
+    name: '猫猫15',
+    prompt: '(((best quality))),(((masterpiece))), highres, original, extremely detailed wallpape,(((cinematic lighting))), loli, jk, cat ears, blush, hairclip, white skin, frills, beret, heart-shaped pupils, short hair, short dress,blush, aqua eyes, full body, colorful,cute,little girl,blurry,dynamic angle, magic girl, rabbit, cat, pet, gift, 1girl',
+    width: 768,
+    height: 512
+  },
+  {
     name: '海中少女1',
     prompt: '((masterpiece)), best quality, illustration, 1 girl, beautiful detailed eyes, beautiful detailed sky, beautiful detailed water, cinematic lighting, dramatic angle, sailor dress, wet clothes'
   },
@@ -204,6 +210,12 @@ const presetList = [
     width: 640,
     height: 384,
     scale: 6
+  },
+  {
+    name: '涩图4(NSFW)',
+    prompt: '{best quality}, {{masterpiece}}, {highres}, original, extremely detailed 8K wallpaper,highly detailed, 1girl, {an extremely delicate and beautiful}, loli, nude, pussy, cum on pussy, sea background, cloud',
+    width: 640,
+    height: 1024
   },
   {
     name: '夜晚撑伞少女',

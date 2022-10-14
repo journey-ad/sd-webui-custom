@@ -240,7 +240,7 @@ function querySelectorAll(...args) {
 }
 
 function reload_ui() {
-  querySelector('#request_notifications ~ div > .gr-button-primary')?.click()
+  querySelector('#tab_settings #settings ~ div > .gr-button-primary')?.click()
 }
 
 function add_custom_ui() {

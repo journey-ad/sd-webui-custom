@@ -66,6 +66,16 @@ const presetList = [
     prompt: 'masterpiece, looking at viewer, see_through_raincoat,white hair, cat paws , long hair, hair ornament, hair flower, [loli:1.4], white_flower,white_socks ,parted lips, blurry,shirt, Cat_ ears,loose coat,((Blue pick dye)),wet_queen_dress,fairy-tale'
   },
   {
+    name: '猫猫13',
+    prompt: '((masterpiece))),((best quality)), cat_girl,[cyan hair:1.4],blue_long_hairs,beautiful_detailed_cyan_eyes,[grey_cat_ears:1.5],(nekoha_shizuku),full_body,lay_on_bed,white_very_long_shirt,female_child,[bare_leg:1.2],solo'
+  },
+  {
+    name: '猫猫14',
+    prompt: '(((best quality))),(((masterpiece))), highres, original, extremely detailed wallpape,(((cinematic lighting))),long hair, white hair, blue eye, hair ornament, loli, jk, cat ears, blush, hairclip, white skin, frills, beret, heart-shaped pupils, short hair, short dress,blush, aqua eyes, full body, snowingt,very long hair,colorful,cute,Blue pick dye,little girl,blurry,dynamic angle,snowing',
+    step: 45,
+    scale: 15
+  },
+  {
     name: '海中少女1',
     prompt: '((masterpiece)), best quality, illustration, 1 girl, beautiful detailed eyes, beautiful detailed sky, beautiful detailed water, cinematic lighting, dramatic angle, sailor dress, wet clothes'
   },
@@ -133,6 +143,12 @@ const presetList = [
     prompt: 'best quality, masterpiece, beautiful detailed blue eyes, ((1little girl)), light brown hair, bangs, blush, bow, brown skirt, collarbone, cowboy shot, sidelocks, hair between eyes, hair bow, pink jacket, long hair, open clothes, open jacket, small pink nipples, open mouth, paw pose, red bow, shirt, sidelocks, simple background, skirt, white background, white shirt, ((((little round breast)))), ((yellow star hair ornament))'
   },
   {
+    name: '嘉然😪',
+    prompt: 'masterpiece, best quality, 1young girl,beautiful detailed blue eyes, long hair,(light brown hair:1.2), sidelocks, hair between eyes, small ahoge, bangs, blush, bedroom, bed, pillows, sleeping, lying, dreaming, (big red bow behind hair:1.3), (yellow star ornament on hair:1.33)',
+    width: 768,
+    height: 512
+  },
+  {
     name: '嘉然🥵(NSFW)',
     prompt: 'masterpiece, best quility, 1young girl, cinematic lighting, dramatic angle, beautiful detailed blue eyes, (light brown hair:1.25), long hair, (big red bow behind hair:1.5), (oval face), embarrassed face, (middle round breasts), (small pink nipples:1.2), tiny areola, nude, (yellow star hair ornament:1.15), beautiful detailed scene'
   },
@@ -197,8 +213,12 @@ const presetList = [
     scale: 7
   },
   {
-    name: '菠萝饭',
+    name: '菠萝盖饭',
     prompt: 'Extremely detailed CG unity 8k wallpaper,150g rice, 200g curry roux, 300g beef, 2 onions,1 pineapple, 20g butter, 1 tablespoongrated garlic,a pinch of salt and pepper, 1 bay leaf, 1 tablespoon honey',
+  },
+  {
+    name: '番茄蛋面',
+    prompt: 'Extremely detailed CG unity 8k wallpaper, some noodles, 200g curry roux, 300g beef, 2 tomatoes, a slice of fried egg, 20g butter, a pinch of salt and pepper, 1 bay leaf'
   },
   // {
   //   name: '大奶子姐姐3',

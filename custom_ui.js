@@ -120,6 +120,10 @@ const presetList = [
     prompt: '((masterpiece)), (best quality), illustration, 1 girl, loli, beautiful detailed eyes, beautiful detailed sky, beautiful detailed water, cinematic lighting, dramatic angle, smile, naked, small breasts, (sweat), pussy juice'
   },
   {
+    name: '海中少女9',
+    prompt: '((masterpiece))((best quality)),1girl,petite,Depth of field,lens flare,extremely detailed,8k wallpaper,Amazing,beautiful detailed eyes,finely detail,score:>=10,Water, ocean, crystal, water droplets'
+  },
+  {
     name: '银色短卷发少女',
     prompt: '(((masterpiece))), best quality, illustration, dark background, sunlight, beautiful detailed eyes, 1girl, expressionless, blue eyes, (((white short hair))), ((wavy hair)), (((dishevled hair))), messy hair, long bangs, hairs between eyes, ((((white bloomers)))), ((open clothes))'
   },
@@ -139,6 +143,13 @@ const presetList = [
   {
     name: '粉色色气少女(NSFW)',
     prompt: '(an extremely delicate and beautiful), ((masterpiece)), illustration, (extremely detailed cg), beautiful detailed eyes, ahoge, small nipples, cute face, best qualtry, open clothes, flat chest, white shirt, white stocking, pink eyes, pleated skirt, slobber, squat, saliva, sweating, white underpants, masturbate by hand, pink wavy hair, wet clothes'
+  },
+  {
+    name: '夜晚撑伞少女',
+    prompt: 'dark lighting, spotlight, masterpiece, best quality, flat color, reflection, chromatic aberration, illustration, 1girl,beautiful detailed eyes, looking through umbrella, looking back, gradient multicolored irresident shiny disheveled white hair , blue detailed multicolored eyes , white hoodie, transparent translucent waterclothes, transparent translucent umbrella, holding umbrella , waterdrops on umbrella, city, night',
+    negative: 'lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, bad feet',
+    step: 50,
+    scale: 7
   },
   {
     name: '嘉然😘',
@@ -171,7 +182,7 @@ const presetList = [
     prompt: '(((masterpiece))), ((best quality)), flat chest, ((loli)), (one girl), very long light white hair, beautiful detailed red eyes, aqua eyes, white robe, cat ears, (flower hairpin), (surrounded by beautiful detailed flowers), sunlight, light smile, beautiful detailed blue necklace, see-through, flower request, sun'
   },
   {
-    name: '双色长筒袜',
+    name: '双色过膝袜',
     prompt: 'masterpiece, best qualtry, ((1girl)), loli, animal ears, blue eyes, hair ornament, sea, cute face, long hair, white_hair, blue eye, look at viewer, small chest, (school uniform), [(black_thighhighr:1.0):(white_thighhighr:1.0):(single_thighhigh:1.5)], (profile:1.2), blush, back hands'
   },
   {
@@ -193,6 +204,10 @@ const presetList = [
   {
     name: '大奶子姐姐3',
     prompt: '(an extremely delicate and beautiful), best quality, ((masterpiece)), illustration, (extremely detailed cg), ((beautiful detailed eyes)), 1Young woman, Long white hair, red eyes, Metal combat suit'
+  },
+  {
+    name: '大奶子姐姐4',
+    prompt: '(profile picture),(an extremely delicate and beautiful girl), cg 8k wallpaper, masterpiece, cold expression, handsome, upper body, looking at viewer, (photorealistic), (painting)'
   },
   {
     name: '涩图1(NSFW)',
@@ -218,11 +233,20 @@ const presetList = [
     height: 1024
   },
   {
-    name: '夜晚撑伞少女',
-    prompt: 'dark lighting, spotlight, masterpiece, best quality, flat color, reflection, chromatic aberration, illustration, 1girl,beautiful detailed eyes, looking through umbrella, looking back, gradient multicolored irresident shiny disheveled white hair , blue detailed multicolored eyes , white hoodie, transparent translucent waterclothes, transparent translucent umbrella, holding umbrella , waterdrops on umbrella, city, night',
-    negative: 'lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, bad feet',
-    step: 50,
-    scale: 7
+    name: '神秘黑白机械风',
+    prompt: '(best quality), ((masterpiece)), (highres), original,cacred,holy,mysterious,coat,extremely detailed wallpaper, 1girl, monochrome, (an extremely delicate and beautiful), mecha, gears',
+    step: 70,
+    width: 1024,
+    height: 640,
+    scale: 14
+  },
+  {
+    name: '钢铁巨兽',
+    prompt: '(best quality), ((masterpiece)), (highres), blasphemy, mysterious, sacred, holy, divine, antichrist, illustration, ((MechanicalMonsteri)), (extremely detailed cg), non-humanoid, ((Remus GoD machine-Fenrir)), masterpiece, powerful, extremely detailed CG unity 8k wallpaper, art oflight, artist style, hyper machine, Transformation by mechanization, Mechanicalweapon',
+    step: 70,
+    width: 1024,
+    height: 640,
+    scale: 14
   },
   {
     name: '菠萝盖饭',
@@ -255,6 +279,26 @@ function reload_ui() {
   querySelector('#tab_settings #settings ~ div > .gr-button-primary')?.click()
 }
 
+function buildLabelReferenceMap() {
+  return [...querySelectorAll('#tab_txt2img label[for] span')].reduce((labelMap, label) => {
+    const key = label.textContent.trim(),
+      val = label.parentNode.getAttribute('for')
+
+    labelMap[key] = val
+
+    return labelMap
+  }, {})
+}
+
+function changeVal(selector, value) {
+  const el = querySelector(selector)
+  el.value = value
+
+  const event = new Event('input')
+  Object.defineProperty(event, 'target', { writable: false, value: el });
+  el.dispatchEvent(event)
+}
+
 function add_custom_ui() {
   if (!document.getElementsByTagName('gradio-app').length) {
     requestAnimationFrame(add_custom_ui)
@@ -285,14 +329,17 @@ function add_custom_ui() {
     return el
   }).join('')}`
 
-  function changeVal(selector, value) {
-    const el = querySelector(selector)
-    el.value = value
+  const changeValByLabel = (() => {
+    const labelMap = buildLabelReferenceMap()
 
-    const event = new Event('input')
-    Object.defineProperty(event, 'target', { writable: false, value: el });
-    el.dispatchEvent(event)
-  }
+    return (label, value) => {
+      const id = labelMap[label]
+
+      if (!id) return
+
+      changeVal(`#${id}`, value)
+    }
+  })();
 
   customEl.addEventListener('click', (e) => {
     const { target } = e
@@ -300,6 +347,8 @@ function add_custom_ui() {
 
     if (dataset.name) {
       const preset = presetList.find(item => item.name === dataset.name)
+
+      if (!preset) return
 
       const {
         name,
@@ -321,12 +370,12 @@ function add_custom_ui() {
       target.className = 'active text-base text-white bg-blue-400 px-1 rounded-sm'
 
       changeVal('#txt2img_prompt textarea', prompt)
-      changeVal('#negative_prompt textarea', negative)
-      changeVal('#range_id_0', step)
+      changeVal('#txt2img_neg_prompt textarea', negative)
+      changeValByLabel('Sampling Steps', step)
       querySelector(`#txt2img_sampling input[name="radio-txt2img_sampling"][value="${method}"]`)?.click()
-      changeVal('#range_id_1', width)
-      changeVal('#range_id_2', height)
-      changeVal('#range_id_6', scale)
+      changeValByLabel('Width', width)
+      changeValByLabel('Height', height)
+      changeValByLabel('CFG Scale', scale)
     }
   })
 

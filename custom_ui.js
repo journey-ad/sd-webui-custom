@@ -210,6 +210,10 @@ const presetList = [
     prompt: '(profile picture),(an extremely delicate and beautiful girl), cg 8k wallpaper, masterpiece, cold expression, handsome, upper body, looking at viewer, (photorealistic), (painting)'
   },
   {
+    name: '大奶子姐姐5',
+    prompt: '(an extremely delicate and beautiful), best quality, ((masterpiece)), illustration, (extremely detailed cg), ((beautiful detailed eyes)), 1Young woman, Long white hair, red eyes, large_breasts, mini plaid skirt, curly hair',
+  },
+  {
     name: '涩图1(NSFW)',
     prompt: 'masterpiece, best quality, lighting, detailed, illustration, nsfw, loli, skin, fang, hair, eyes, navel',
   },
@@ -267,18 +271,8 @@ const presetList = [
   // }
 ]
 
-function querySelector(...args) {
-  return gradioApp()?.querySelector(...args)
-}
-
-function querySelectorAll(...args) {
-  return gradioApp()?.querySelectorAll(...args)
-}
-
-function reload_ui() {
-  querySelector('#tab_settings #settings ~ div > .gr-button-primary')?.click()
-}
-
+let labelMap = {} // 提示标签->id引用映射
+// 构造标签引用映射
 function buildLabelReferenceMap() {
   return [...querySelectorAll('#tab_txt2img label[for] span')].reduce((labelMap, label) => {
     const key = label.textContent.trim(),
@@ -290,6 +284,24 @@ function buildLabelReferenceMap() {
   }, {})
 }
 
+function querySelector(...args) {
+  return gradioApp()?.querySelector(...args)
+}
+
+function querySelectorAll(...args) {
+  return gradioApp()?.querySelectorAll(...args)
+}
+
+// 通过标签选择对应配置项元素
+function querySelectorByLabel(label) {
+  const id = labelMap[label]
+
+  if (!id) return
+
+  return querySelector(`#${id}`)
+}
+
+// 通过选择器模拟触发修改值
 function changeVal(selector, value) {
   const el = querySelector(selector)
   el.value = value
@@ -299,20 +311,66 @@ function changeVal(selector, value) {
   el.dispatchEvent(event)
 }
 
+// 通过标签修改值
+function changeValByLabel(label, value) {
+  const id = labelMap[label]
+
+  if (!id) return
+
+  changeVal(`#${id}`, value)
+}
+
+// 模拟点击重载gradio
+function reload_ui() {
+  querySelector('#tab_settings #settings ~ div > .gr-button-primary')?.click()
+}
+
+// 添加自定义UI
 function add_custom_ui() {
+  // 未获取到gradio-app重试
   if (!document.getElementsByTagName('gradio-app').length) {
     requestAnimationFrame(add_custom_ui)
     return
   }
 
+  // 防止重复添加
   if (querySelector('#custom_preset')) return
 
-  const $quicksettingsEl = querySelector('#tab_txt2img')
-  if (!$quicksettingsEl) {
+  // 未获取到注入点dom重试
+  const $txt2imgTabEl = querySelector('#tab_txt2img')
+  if (!$txt2imgTabEl) {
     requestAnimationFrame(add_custom_ui)
     return
   }
 
+  // 构造标签引用映射
+  labelMap = buildLabelReferenceMap()
+
+  // 添加交换宽高按钮
+  const $sizeSettingPanel = querySelectorByLabel('Width')?.closest('.gr-form')
+  if($sizeSettingPanel) {
+    $sizeSettingPanel.parentNode.classList.add('flex')
+    $sizeSettingPanel.classList.add('w-full')
+
+    const switchWrapper = document.createElement('div')
+    switchWrapper.className = 'flex ml-2'
+
+    const switchBtn = document.createElement('button')
+    switchBtn.className = 'gr-button gr-button-lg gr-button-secondary'
+    switchBtn.textContent = '🔄'
+    switchBtn.addEventListener('click', () => {
+      const width = querySelectorByLabel('Width').value
+      const height = querySelectorByLabel('Height').value
+
+      changeValByLabel('Width', height)
+      changeValByLabel('Height', width)
+    })
+
+    switchWrapper.appendChild(switchBtn)
+    $sizeSettingPanel.insertAdjacentElement('afterend', switchWrapper)
+  }
+
+  // 添加自定义预设框
   const customEl = document.createElement('fieldset')
   customEl.id = 'custom_preset'
   customEl.className = 'flex flex-wrap w-full p-2 my-2 gap-2 border-solid border border-gray-300 rounded-sm text-sm'
@@ -328,18 +386,6 @@ function add_custom_ui() {
 
     return el
   }).join('')}`
-
-  const changeValByLabel = (() => {
-    const labelMap = buildLabelReferenceMap()
-
-    return (label, value) => {
-      const id = labelMap[label]
-
-      if (!id) return
-
-      changeVal(`#${id}`, value)
-    }
-  })();
 
   customEl.addEventListener('click', (e) => {
     const { target } = e
@@ -379,10 +425,11 @@ function add_custom_ui() {
     }
   })
 
-  $quicksettingsEl.insertAdjacentElement('afterbegin', customEl)
+  $txt2imgTabEl.insertAdjacentElement('afterbegin', customEl)
 
   console.log('预置参数面板添加成功, 当前参数列表', presetList)
 
+  // 添加自定义footer
   const $footer = querySelector('footer')
   $footer.classList.add('items-center')
   const counter = document.createElement('img')

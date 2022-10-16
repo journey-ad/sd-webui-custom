@@ -237,6 +237,12 @@ const presetList = [
     height: 1024
   },
   {
+    name: '涩图5(NSFW)',
+    prompt: 'cowboy shot (anime:1.2) cat ears (closed mouth:0.9) (expressionless:0.9) small breasts nipples assertive nude (loli:1) girl in bright silver disheveled (two side up:1) (long:0.9) hair (looking at viewer:0.9) reclining (presenting:1.1) female ejaculation in red ribbon white thighhighs in (street:1.05) [crowd:0.8], (public indecency:1.05), sexually suggestive, labia wet cream cumdrip dripping pussy and (anus:0.8) by [(Jeremy Mann:1.55) :(Jeremy Mann:1):0.6] [and Patrice Murciano::0.4] [and Carne Griffiths:0.6], [messy sketch|watercolor]',
+    negative: "lowres, bad anatomy, (bad hands), bad leg, bad proportions, bad perspective, signature, watermark, username, text, missing fingers, extra digit, fewer digits, worst quality, low quality, normal quality, blurry, emphasis lines, futanari, futa, erection, 1boy, missing limb, extra legs, slime, [extra hands arms], [mutation], lower body, large breasts, gown, latex, pencil, bodysuit, swimsuit, (high heel), realistic, (blush:0.6), (tongue out:0.6)",
+    step: 50
+  },
+  {
     name: '神秘黑白机械风',
     prompt: '(best quality), ((masterpiece)), (highres), original,cacred,holy,mysterious,coat,extremely detailed wallpaper, 1girl, monochrome, (an extremely delicate and beautiful), mecha, gears',
     step: 70,

@@ -82,6 +82,10 @@ const presetList = [
     height: 512
   },
   {
+    name: '猫猫16',
+    prompt: '{masterpiece},{best quality},{1girl},Amazing,beautiful detailed eyes,finely detail,Depth of field,extremely detailed CG,original, extremely detailed wallpaper,loli,white_hair,magic_circle,cat_ears,long_hair,white_hair/yellow_eyes,wand,pentagram,clock, {masterpiece},{best quality},{1girl},Amazing,beautiful detailed eyes,finely detail,Depth of field,extremely detailed CG,original, extremely detailed wallpaper,loli, white_hair'
+  },
+  {
     name: '海中少女1',
     prompt: '((masterpiece)), best quality, illustration, 1 girl, beautiful detailed eyes, beautiful detailed sky, beautiful detailed water, cinematic lighting, dramatic angle, sailor dress, wet clothes'
   },
@@ -241,6 +245,19 @@ const presetList = [
     prompt: 'cowboy shot (anime:1.2) cat ears (closed mouth:0.9) (expressionless:0.9) small breasts nipples assertive nude (loli:1) girl in bright silver disheveled (two side up:1) (long:0.9) hair (looking at viewer:0.9) reclining (presenting:1.1) female ejaculation in red ribbon white thighhighs in (street:1.05) [crowd:0.8], (public indecency:1.05), sexually suggestive, labia wet cream cumdrip dripping pussy and (anus:0.8) by [(Jeremy Mann:1.55) :(Jeremy Mann:1):0.6] [and Patrice Murciano::0.4] [and Carne Griffiths:0.6], [messy sketch|watercolor]',
     negative: "lowres, bad anatomy, (bad hands), bad leg, bad proportions, bad perspective, signature, watermark, username, text, missing fingers, extra digit, fewer digits, worst quality, low quality, normal quality, blurry, emphasis lines, futanari, futa, erection, 1boy, missing limb, extra legs, slime, [extra hands arms], [mutation], lower body, large breasts, gown, latex, pencil, bodysuit, swimsuit, (high heel), realistic, (blush:0.6), (tongue out:0.6)",
     step: 50
+  },
+  {
+    name: '机娘1',
+    prompt: '{{masterpiece}}, flat chestbest quality},{highres},solo,flat_chest,a girl inside the church with white hair and blue pupil surrounded by {many} glowing {feathers} in cold face,detailed face,night with bright colorful lights whith richly layered clouds and clouded moon in the detailed sky,{a lot of glowing particles},high ponytail,mecha clothes,robot girl,cool movement,sliver bodysuit,{filigree},delicate and (intricate) hair,((sliver)) and (broken) body,blue streaked hair,full body,Depth of field, sitting on a {blue star}',
+    step: 28,
+    scale: 12
+  },
+  {
+    name: '机娘2',
+    prompt: '((master piece)),best quality, illustration, 1girl, small breast, beautiful detailed eyes, beautiful detailed cyberpunk city, flat_ chest, beautiful detailed hair, wavy hair, beautiful detailed street, mecha clothes, robot girl, cool movement, sliver bodysuit, (filigree), dragon wings, colorful background, a dragon stands behind the girl, rainy days, (lightning effect), beautiful detailed sliver dragon arnour, (cold face)',
+    step: 23,
+    method: 'DDIM',
+    scale: 4.5
   },
   {
     name: '神秘黑白机械风',

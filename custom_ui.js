@@ -1,4 +1,5 @@
 (function () {
+  // 加载预置参数
   const { defaultPreset, presetList } = JSON.parse(readFile('ui_custom/preset.json'))
 
   let labelMap = {} // 提示标签->id引用映射
@@ -15,12 +16,16 @@
     }, {})
   }
 
+  // 加载本地化语料
   const i18n = JSON.parse(readFile('ui_custom/i18n.json'))
+
+  // 翻译页面
   function translatePage() {
     // const selector = ['tab_txt2img', 'tab_img2img', 'tab_extras', 'tab_pnginfo'].map(tab => `#${tab} label span, #${tab} button`).join(',')
     [...querySelectorAll('label span, fieldset span, button')].forEach(translateEl)
-
   }
+
+  // 翻译元素
   function translateEl(el) {
     const text = el.textContent.trim()
 
@@ -112,7 +117,7 @@
       tab_pnginfo: buildLabelReferenceMap('tab_pnginfo'),
     }
 
-    // 翻译页面
+    // UI更新时翻译页面
     onUiUpdate(translatePage)
 
     // 添加交换宽高按钮

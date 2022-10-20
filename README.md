@@ -16,6 +16,10 @@
 `custom_ui.js`丢到`javascript`目录   
 重启程序，webui会自动加载
 
+## 其他
+`misc/ai_generate_webui.py`   
+一个基于nonebot2框架的AI绘图机器人，支持配置prompt黑名单和调用cd
+
 ## Credits
 [StableDiffusion Show](https://t.me/StableDiffusion_Show)   
 [VinsonLaro](https://www.bilibili.com/video/BV1VG41177ha)

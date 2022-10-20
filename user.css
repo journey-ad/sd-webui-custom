@@ -1,23 +1,48 @@
 /* custom css */
-#quicksettings{
+#quicksettings {
   opacity: 0.3;
 }
-#quicksettings > div > div{
+
+#quicksettings>div>div {
   cursor: not-allowed;
 }
-#quicksettings > div > div > *{
+
+#quicksettings>div>div>* {
   pointer-events: none;
 }
-.gradio-container .tabs > div:first-child button:nth-child(n+5) {
+
+#refresh_sd_model_checkpoint {
+  display: none;
+}
+
+.gradio-container .tabs>div:first-child button:nth-child(n+5) {
   display: none;
   opacity: 0.3;
   pointer-events: none;
 }
+
 .performance {
   white-space: unset;
 }
+
 .output-html p br {
   content: "";
   display: block;
   margin-bottom: 0.5em;
+}
+
+#mode_extras>div:first-child button:nth-child(n+3) {
+  display: none;
+}
+
+.custom_ui__trans_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+}
+
+.custom_ui__trans_wrapper span {
+  font-size: 10px;
+  white-space: nowrap;
 }

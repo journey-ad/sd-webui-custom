@@ -129,6 +129,11 @@
       "prompt": "((masterpiece))((best quality)),1girl,petite,Depth of field,lens flare,extremely detailed,8k wallpaper,Amazing,beautiful detailed eyes,finely detail,score:>=10,Water, ocean, crystal, water droplets"
     },
     {
+      "name": "海中少女10",
+      "prompt": "masterpiece,best quality,1 girl,loli, small breasts,animal ears, white flower hair ornament, cute face,shy, long hair, white hair, lying , wet, gold blue dress ,sea, illustration, dynamic angle, cinematic lighting, beautiful detailed water",
+      "negative": "nsfw, lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry,hands"
+    },
+    {
       "name": "银色短卷发少女",
       "prompt": "(((masterpiece))), best quality, illustration, dark background, sunlight, beautiful detailed eyes, 1girl, expressionless, blue eyes, (((white short hair))), ((wavy hair)), (((dishevled hair))), messy hair, long bangs, hairs between eyes, ((((white bloomers)))), ((open clothes))"
     },
@@ -189,6 +194,12 @@
     {
       "name": "双色过膝袜",
       "prompt": "masterpiece, best qualtry, ((1girl)), loli, animal ears, blue eyes, hair ornament, sea, cute face, long hair, white_hair, blue eye, look at viewer, small chest, (school uniform), [(black_thighhighr:1.0):(white_thighhighr:1.0):(single_thighhigh:1.5)], (profile:1.2), blush, back hands"
+    },
+    {
+      "name": "花园少女",
+      "prompt": "foreshortening,extremely detailed CG,HD wallpaper,{masterpiece},best quality,beautiful detailed sky,dramatic,ai floverse ,{1girl},perfect pretty face,looking at viewer,{full body},surrounded by beautiful detailed flowers,female pov,cat girl,white flower hair ornament,{{white hair}},{{flower hairpin}},hime cut,flat,standing,beret,{light blue dress shirt with long sleeves},brooch,sarashi,{light blue skirt},{fine fabric emphasis white legwear},beautiful detailed bright blue eyes,full body,shiny skin,pigeon,toed,see-through,flower request,sun",
+      "step": 50,
+      "scale": 5.5
     },
     {
       "name": "黑发少女1",

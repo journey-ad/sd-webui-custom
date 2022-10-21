@@ -37,8 +37,8 @@
 
     if (text === translate) return
 
-    el.setAttribute('title', translate)
-    el.innerHTML = `<span class="custom_ui__trans_wrapper"><span>${translate}</span>${text}</span>`
+    el.setAttribute('title', `${translate}\n${text}`)
+    el.innerHTML = `<div class="custom_ui__trans_wrapper"><em>${translate}</em>${text}</div>`
   }
 
   function querySelector(...args) {

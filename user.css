@@ -25,6 +25,10 @@
   white-space: unset;
 }
 
+.output-html p {
+  word-break: break-word;
+}
+
 .output-html p br {
   content: "";
   display: block;
@@ -42,7 +46,11 @@
   line-height: 1;
 }
 
-.custom_ui__trans_wrapper span {
-  font-size: 10px;
-  white-space: nowrap;
+.custom_ui__trans_wrapper em {
+  font-size: 12px;
+  font-style: normal;
+}
+
+#settings .custom_ui__trans_wrapper {
+  align-items: flex-start;
 }

@@ -44,7 +44,7 @@ MP = {
   "up_time": 20,  # mp 恢复间隔时间 s
 }
 
-BLOCK_WORDS = r'nsfw|nude|r18|porn|hentai|pee|sex|pussy|cum|boob|ass|tit|dick|penis|cock|ahegao|naked|nudity|nipple|nipples|masturbate|masturbation|anus|vagina|uncensored|fuck|shit|sexy|without|bra|underwear|genitalia|vulva|tentacle|hairjob|oral|fellatio|deepthroat|gokkun|gag|ballgag|bitgag|tapegag|facial|leash|handjob|groping|areolae|suck|paizuri|piercing|navel|piercing|footjob|mound_of_venus|wide_hips|masturbation|clothed_masturbation|penis|testicles|ejaculation|cum|tamakeri|pussy|vaginal|clitoris|mons|cameltoe|ejaculation|grinding|facesitting|cervix|cunnilingus|insertion|insertion|penetration|fisting|fingering|peeing|ass|huge_ass|spread_ass|buttjob|spanked|anus|anal|anilingus|enema|stomach|bulge|x-ray|cross-section|internal|cumshot|wakamezake|public|humiliation|bra_lift|panties_around_one_leg|caught|body_writing|tally|futanari|incest|twincest|pegging|femdom|ganguro|bestiality|gangbang|hreesome|group_sex|orgy|teamwork|tribadism|molestation|voyeurism|exhibitionism|rape|about_to_be_raped|sex|clothed_sex|happy_sex|underwater_sex|spitroast|cock_in_thighhigh|69|doggystyle|leg_lock|upright_straddle|missionary|girl_on_top|cowgirl_position|reverse_cowgirl|virgin|slave|shibari|bondage|bdsm|pillory|stocks|rope|bound_arms|bound_wrists|crotch_rope|hogtie|frogtie|suspension|spreader_bar|wooden_horse|anal_beads|dildo|cock_ring|egg_vibrator|artificial_vagina|hitachi_magic_wand|dildo|double_dildo|vibrator|vibrator_in_thighhighs|nyotaimori|vore|amputee|transformation|mind_control|censored|uncensored|asian|faceless_male|blood'
+BLOCK_WORDS = r'nsfw|nude|r18|porn|hentai|pee|sex|pussy|cum|boob|ass|tit|dick|penis|cock|ahegao|naked|nudity|nipple|nipples|masturbate|masturbation|anus|vagina|uncensored|fuck|shit|sexy|without|bra|underwear|genitalia|genitalias|vulva|vulvas|tentacle|hairjob|oral|fellatio|deepthroat|gokkun|gag|ballgag|bitgag|tapegag|facial|leash|handjob|groping|areolae|suck|paizuri|piercing|navel|piercing|footjob|venus|masturbation|penis|testicles|ejaculation|cum|tamakeri|pussy|vaginal|clitoris|mons|cameltoe|ejaculation|grinding|facesitting|cervix|cunnilingus|insertion|insertion|penetration|fisting|fingering|peeing|ass|buttjob|spanked|anus|anal|anilingus|enema|stomach|bulge|xray|x-ray|cross-section|internal|cumshot|wakamezake|humiliation|caught|tally|futanari|incest|twincest|pegging|femdom|ganguro|bestiality|gangbang|hreesome|orgy|teamwork|tribadism|molestation|voyeurism|exhibitionism|rape|raped|sex|spitroast|69|doggystyle|missionary|cowgirl|virgin|slave|shibari|bondage|bdsm|pillory|stocks|rope|crotch|hogtie|frogtie|suspension|dildo|vibrator|nyotaimori|vore|amputee|transformation|censored|uncensored|asian|no cloth|not cloth|not wear|no wear|no underwear'
 
 @generate.handle()
 async def handle_first_receive(
@@ -171,10 +171,18 @@ async def handle_TagImg(bot: Bot, event: MessageEvent, state: T_State):
   tags = re.sub(r'\r|\n|\t', "", state["generate"]) # 过滤制表符
   # print(tags)
 
-  block_set = set(BLOCK_WORDS.lower().split('|'))
-  tags_list = list(filter(None, re.split(r'\W|_', tags.lower())))
+  block_set = set(BLOCK_WORDS.lower().split('|')) # 构造黑名单列表
+  _tmp_tags = ' '.join(re.sub(r'\d', '', tags).lower().split()) # 去除所有数字和多余空格，并转为小写
+  tags_list = list(re.split(r'\W', _tmp_tags)) + list(re.split(r',|，|_', _tmp_tags)) # 构造检索列表，包含所有通常意义上的单词
+  
+  with_space = [x for x in block_set if ' ' in x] # 过滤包含空格的黑名单
+  with_space_match = [x for x in with_space if x in _tmp_tags] # 直接做检索匹配
+  
+  tags_list = tags_list + with_space_match # 合并匹配列表
 
-  match = [x for x in tags_list if x in block_set]
+  tags_list = filter(None, list(dict.fromkeys(tags_list))) # 去重
+
+  match = [x for x in tags_list if x in block_set] # 和黑名单取交集，结果就是触发的关键词列表
 
   if match:
     msg_at = MessageSegment.at(event.user_id) if event.user_id else ""
@@ -246,7 +254,7 @@ async def dowimg(prompt: str, opts: dict, proxy: bool) -> str:
       proxies=get_Proxy(open_proxy=proxy), timeout=100
     ) as client:
       data = {
-        "fn_index": 13, # txt2img
+        "fn_index": 14, # txt2img
         "data": [
         "masterpiece, best quality, " + prompt, # 输入词组
         "nsfw, r18, r18-g, lowres, bad anatomy, bad hands, bad feet, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry", # 负关键词组
@@ -271,6 +279,14 @@ async def dowimg(prompt: str, opts: dict, proxy: bool) -> str:
         opts["denoising_strength"],
         0,
         0,
+        "0.0001",
+        0.9,
+        5,
+        "None",
+        False,
+        "",
+        0.1,
+        False,
         "None",
         False,
         False,
@@ -290,7 +306,7 @@ async def dowimg(prompt: str, opts: dict, proxy: bool) -> str:
       }
       if "image_base64" in opts:
         data = {
-          "fn_index": 32, # img2img
+          "fn_index": 35, # img2img
           "data": [
             0,
             "masterpiece, best quality, " + prompt, # 输入词组
@@ -326,6 +342,14 @@ async def dowimg(prompt: str, opts: dict, proxy: bool) -> str:
             "Inpaint masked",
             "",
             "",
+            "0.0001",
+            0.9,
+            5,
+            "None",
+            False,
+            "",
+            0.1,
+            False,
             "None",
             "",
             True,

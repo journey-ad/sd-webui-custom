@@ -22,4 +22,4 @@
 
 ## Credits
 [StableDiffusion Show](https://t.me/StableDiffusion_Show)   
-[VinsonLaro](https://www.bilibili.com/video/BV1VG41177ha)
+[VinsonLaro/stable-diffusion-webui-chinese](https://github.com/VinsonLaro/stable-diffusion-webui-chinese)

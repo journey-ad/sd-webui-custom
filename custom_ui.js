@@ -22,23 +22,55 @@
   // 翻译页面
   function translatePage() {
     // const selector = ['tab_txt2img', 'tab_img2img', 'tab_extras', 'tab_pnginfo'].map(tab => `#${tab} label span, #${tab} button`).join(',')
-    [...querySelectorAll('label span, fieldset span, button')].forEach(translateEl)
+    [...querySelectorAll('label span, fieldset span, button, textarea[placeholder], select[title], option')].forEach(translateEl)
   }
 
   // 翻译元素
   function translateEl(el) {
-    const text = el.textContent.trim()
+    if (el.textContent && el.tagName !== 'SELECT') {
+      if (el.tagName === 'OPTION') {
+        doTranslate(el, el.textContent, 'option')
+      } else {
+        doTranslate(el, el.textContent, 'element')
+      }
+    }
 
-    if (!text) return
+    if (el.title) {
+      doTranslate(el, el.title, 'title')
+    }
 
-    const translate = i18n[text]
+    if (el.placeholder) {
+      doTranslate(el, el.placeholder, 'placeholder')
+    }
+  }
+
+  function doTranslate(el, source, type) {
+    if (!source) return
+
+    source = source.trim()
+
+    const translate = i18n[source]
 
     if (!translate) return
+    if (source === translate) return
 
-    if (text === translate) return
+    switch (type) {
+      case 'element':
+        el.innerHTML = `<div class="custom_ui__trans_wrapper"><em>${translate}</em>${source}</div>`
+        break;
 
-    el.setAttribute('title', `${translate}\n${text}`)
-    el.innerHTML = `<div class="custom_ui__trans_wrapper"><em>${translate}</em>${text}</div>`
+      case 'option':
+        el.textContent = `${translate} (${source})`
+        break;
+
+      case 'title':
+        el.title = `${translate}\n${source}`
+        break;
+
+      case 'placeholder':
+        el.placeholder = `${translate}\n${source}`
+        break;
+    }
   }
 
   function querySelector(...args) {

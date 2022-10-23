@@ -354,6 +354,7 @@ async def dowimg(prompt: str, opts: dict, proxy: bool) -> str:
             #False,
             "None",
             "",
+            "",
             True,
             True,
             "",

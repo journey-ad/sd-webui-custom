@@ -135,7 +135,7 @@
     },
     {
       "name": "银色短卷发少女",
-      "prompt": "(((masterpiece))), best quality, illustration, dark background, sunlight, beautiful detailed eyes, 1girl, expressionless, blue eyes, (((white short hair))), ((wavy hair)), (((dishevled hair))), messy hair, long bangs, hairs between eyes, ((((white bloomers)))), ((open clothes))"
+      "prompt": "(((masterpiece))), best quality, illustration, dark background, sunlight, beautiful detailed eyes, 1girl, small breasts, expressionless, blue eyes, (((white short hair))), ((wavy hair)), (((dishevled hair))), messy hair, long bangs, hairs between eyes, (white bloomers), open clothes, ((((black dress)))), over the sea, jellyfish"
     },
     {
       "name": "红黑色系短发少女",
@@ -200,6 +200,10 @@
       "prompt": "foreshortening,extremely detailed CG,HD wallpaper,{masterpiece},best quality,beautiful detailed sky,dramatic,ai floverse ,{1girl},perfect pretty face,looking at viewer,{full body},surrounded by beautiful detailed flowers,female pov,cat girl,white flower hair ornament,{{white hair}},{{flower hairpin}},hime cut,flat,standing,beret,{light blue dress shirt with long sleeves},brooch,sarashi,{light blue skirt},{fine fabric emphasis white legwear},beautiful detailed bright blue eyes,full body,shiny skin,pigeon,toed,see-through,flower request,sun",
       "step": 50,
       "scale": 5.5
+    },
+    {
+      "name": "蓝色短发异色瞳",
+      "prompt": "((masterpiece)), (((best quality))), ((ultra-detailed)), ((illustration)), ((disheveled hair)), 1girl, short hair, blue yellow heterochromia, medium_chest, blue hair, sailor shirt, shorts under skirt, Red Frame Eyeglasses, white Painter's Hat, Emoji, slit pupils, contour deepening, capanime screencap, chibi, portrait, close-up"
     },
     {
       "name": "黑发少女1",

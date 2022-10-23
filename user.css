@@ -11,14 +11,11 @@
   pointer-events: none;
 }
 
-#refresh_sd_model_checkpoint {
+#refresh_sd_model_checkpoint,
+#acActiveCheckbox,
+.gradio-container .tabs>div:first-child button:nth-child(n+5),
+#mode_extras>div:first-child button:nth-child(n+3) {
   display: none;
-}
-
-.gradio-container .tabs>div:first-child button:nth-child(n+5) {
-  display: none;
-  opacity: 0.3;
-  pointer-events: none;
 }
 
 .performance {
@@ -35,10 +32,6 @@
   margin-bottom: 0.5em;
 }
 
-#mode_extras>div:first-child button:nth-child(n+3) {
-  display: none;
-}
-
 .custom_ui__trans_wrapper {
   display: flex;
   flex-direction: column;
@@ -49,6 +42,10 @@
 .custom_ui__trans_wrapper em {
   font-size: 12px;
   font-style: normal;
+}
+
+.custom_ui__prompt_trans {
+  font-size: 12px;
 }
 
 #settings .custom_ui__trans_wrapper {

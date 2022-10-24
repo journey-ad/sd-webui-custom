@@ -86,10 +86,18 @@
       }, {})
     }
 
-    // 转小写并去除多余空格和权重字符，保留转义括号
-    const promptText = text.toLowerCase()
-      .replace(/\s\s+/g, ' ')
-      .replace(/(?<!\\)[(){}\[\]]/g, '')
+    /* 转小写并去除多余空格和权重字符，保留转义括号
+      '{{masterpiece}}, (best quality:1.215), [lowkey:0.03], keyboard \\(computer\\)'
+      => 'masterpiece, best quality, lowkey, keyboard (computer)'
+    */
+    let index = 0
+    let promptText = text
+      .toLowerCase() // 转小写
+      .replace(/\s\s+/g, ' ') // 去除多余空格
+      .replace(/:(\d*\.?\d*)/g, '') // 去除权重值
+      .replace(/\\[(){}\[\]]/g, '\uFFFF') // 暂存转义括号为特殊字符
+      .replace(/[(){}\[\]]/g, '') // 去除其余所有括号
+      .replace(/\uFFFF/g, () => ['(', ')'][index++ % 2]) // 还原转义括号
 
     // 按逗号分割匹配翻译
     const promptList = promptText

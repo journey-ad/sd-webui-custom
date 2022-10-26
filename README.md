@@ -4,7 +4,7 @@
 ## 功能
 - 隐藏了一些功能和设置入口
 - 预置了一些参数合集，方便快速起步
-- 添加中文翻译(感谢VinsonLaro发布的中文翻译文本)
+- 添加中文翻译(同步自webui仓库)
 
 ![](./screenshot_1.jpg)
 
@@ -22,4 +22,3 @@
 
 ## Credits
 [StableDiffusion Show](https://t.me/StableDiffusion_Show)   
-[VinsonLaro/stable-diffusion-webui-chinese](https://github.com/VinsonLaro/stable-diffusion-webui-chinese)

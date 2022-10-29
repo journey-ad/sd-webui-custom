@@ -162,6 +162,12 @@
       "scale": 7
     },
     {
+      "name": "黑色荆棘少女",
+      "prompt": "masterpiece, best quality, (((masterpiece))), (((1 girl))), ((((little girl)))), petite, small breast , best quality, illustration, (beautiful detailed eyes), cinematic lighting, dramatic demons, ((((nahida)))), (thorny roses), (vines), petals, flat chest, (((black hair))), expressionless, (armpits), very little girl, extremely detailed CG unity 8k wallpaper, illustration, 1girl, solo, mind control eyes, wet, night, , black fluid wet, collar, chains, open mouth, cave, Reflective eyes, Hair drips, Watery eyes, darkness",
+      "step": 20,
+      "method": "DDIM"
+    },
+    {
       "name": "嘉然😘",
       "prompt": "best quality, masterpiece, illustration, 1girl, loli, cute, light brown hair, yellow star hair ornament, blue eye, big bow, red pink bow, (a bow on top of the head),looking at viewer, wet clothes, beautiful detailed water, official art"
     },

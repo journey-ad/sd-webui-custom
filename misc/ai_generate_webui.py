@@ -255,7 +255,7 @@ async def dowimg(prompt: str, opts: dict, proxy: bool) -> str:
       proxies=get_Proxy(open_proxy=proxy), timeout=100
     ) as client:
       data = {
-        "fn_index": 14, # txt2img
+        "fn_index": 50, # txt2img
         "data": [
         "masterpiece, best quality, " + prompt, # 输入词组
         "nsfw, r18, r18-g, lowres, bad anatomy, bad hands, bad feet, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry", # 负关键词组
@@ -280,14 +280,6 @@ async def dowimg(prompt: str, opts: dict, proxy: bool) -> str:
         opts["denoising_strength"],
         0,
         0,
-        #"0.0001",
-        #0.9,
-        #5,
-        #"None",
-        #False,
-        #"",
-        #0.1,
-        #False,
         "None",
         "",
         False,
@@ -308,7 +300,7 @@ async def dowimg(prompt: str, opts: dict, proxy: bool) -> str:
       }
       if "image_base64" in opts:
         data = {
-          "fn_index": 35, # img2img
+          "fn_index": 72, # img2img
           "data": [
             0,
             "masterpiece, best quality, " + prompt, # 输入词组
@@ -344,14 +336,6 @@ async def dowimg(prompt: str, opts: dict, proxy: bool) -> str:
             "Inpaint masked",
             "",
             "",
-            #"0.0001",
-            #0.9,
-            #5,
-            #"None",
-            #False,
-            #"",
-            #0.1,
-            #False,
             "None",
             "",
             "",

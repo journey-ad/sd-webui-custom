@@ -1,3 +1,11 @@
+# ⚠️⚠️⚠️已废弃⚠️⚠️⚠️
+*此仓库包含的功能不再维护并已在新版本的 webui 中失效   
+如果你在找双语翻译功能，推荐更换到 [sd-webui-bilingual-localization](https://github.com/journey-ad/sd-webui-bilingual-localization/blob/main/README_ZH.md) 扩展   
+如果想寻找出图参数配置，[civitai.com](https://civitai.com/) 是一个很好的选择   
+自定义样式可以通过调整`user.css`实现*
+
+-----
+
 # sd-webui-custom
 给[Stable Diffusion web UI](https://github.com/AUTOMATIC1111/stable-diffusion-webui)加点料
 
